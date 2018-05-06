@@ -51,7 +51,7 @@ public class test extends BaseController {
         message.setFrom(ConstantCode.MAIL_HOST);
         message.setSubject("注册验证码");
         message.setTo("838937070@qq.com");
-        message.setText("验证码是:" + 123456 + ";请在三分钟内使用，三分钟后验证码失效");
+        message.setText("验证码是:" + 1234567 + ";请在三分钟内使用，三分钟后验证码失效");
 
         //异步执行右键发送
         taskExecutor.execute(()->{
