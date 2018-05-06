@@ -1,0 +1,52 @@
+package utils;
+
+import entity.SysUser;
+import entity.User;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Created by Administrator on 2018/3/24.
+ */
+public class ServletUtils {
+
+    public static final String USER_INFO= "USER_INFO";
+    public static final String SYS_USER= "SYS_USER";
+
+    public static User getUserInfo(HttpServletRequest request)  {
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute(USER_INFO);
+        return (User) user;
+    }
+
+    public static User setUserInfo(HttpServletRequest request, User user)  {
+        HttpSession session = request.getSession();
+        session.setAttribute(USER_INFO, user);
+        return user;
+    }
+
+    public static User clearUserInfo(HttpServletRequest request)  {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute(USER_INFO);
+        session.setAttribute(USER_INFO, null);
+        return user;
+    }
+
+    public static SysUser getSysUser(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        SysUser user = (SysUser) session.getAttribute(SYS_USER);
+        return user;
+    }
+
+    public static SysUser setSysUser(HttpServletRequest request, SysUser user) {
+        HttpSession session = request.getSession();
+        session.setAttribute(SYS_USER, user);
+        return user;
+    }
+
+    public static void clearSysUserInfo(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute(SYS_USER);
+    }
+}
