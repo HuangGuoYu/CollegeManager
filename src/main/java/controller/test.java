@@ -3,7 +3,8 @@ package controller;
 import common.BaseController;
 import common.ConstantCode;
 import dao.BaseDao;
-import entity.SysUser;
+import entity.StuCourseEntity;
+import entity.StuUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -13,9 +14,13 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import resp.GeneralResult;
+import utils.CqustClient;
+import utils.ServletUtils;
 
 import javax.annotation.Resource;
-import java.util.List;
+import javax.persistence.GeneratedValue;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2018/5/6.
@@ -37,12 +42,21 @@ public class test extends BaseController {
 
     @Autowired private BaseDao baseDao;
 
+//    @RequestMapping("/hello")
+//    @ResponseBody
+//    public SysUser hello() {
+//        return baseDao.findAllEntityByClass(SysUser.class).get(0);
+//    }
     @RequestMapping("/hello")
     @ResponseBody
-    public SysUser hello() {
-        return baseDao.findAllEntityByClass(SysUser.class).get(0);
+    public GeneralResult hello() {
+        GeneralResult result = new GeneralResult();
+        StuCourseEntity dbentity = baseDao.findEntityById(1, StuCourseEntity.class);
+        StuCourseEntity entity = new StuCourseEntity();
+        entity.setScCourseid(223);
+        baseDao.execEntitySave(entity);
+        return result.ok(dbentity);
     }
-
     @RequestMapping("/mail")
     @ResponseBody
     public String testMail() {
@@ -67,4 +81,10 @@ public class test extends BaseController {
         return redisTemplate.opsForValue().get("huang");
     }
 
+    public static void main(String[] args) {
+        CqustClient client = new CqustClient();
+        Map<String, String> cookie = client.getLoginedCookie("2014441449", "hgy+1996", null);
+        Map<String, String> personInfo = client.getPersonInfo(cookie);
+        System.out.println(personInfo);
+    }
 }

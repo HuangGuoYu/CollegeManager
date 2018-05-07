@@ -1,8 +1,8 @@
 package common;
 
 
-import entity.SysUser;
-import entity.User;
+import entity.StuUserEntity;
+import entity.SysUserEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import utils.DataUtils;
 import utils.ServletUtils;
@@ -107,12 +107,12 @@ public class BaseController {
      * 获得当前的用户
      * @return 用户实体
      */
-    public User getSessionUser() {
+    public StuUserEntity getSessionUser() {
         return ServletUtils.getUserInfo(request);
     }
 
 
-    public SysUser getSessionSysUser() {
+    public SysUserEntity getSessionSysUser() {
         return ServletUtils.getSysUser(request);
     }
 }

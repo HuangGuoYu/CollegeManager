@@ -1,7 +1,7 @@
 package utils;
 
-import entity.SysUser;
-import entity.User;
+import entity.StuUserEntity;
+import entity.SysUserEntity;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,32 +14,32 @@ public class ServletUtils {
     public static final String USER_INFO= "USER_INFO";
     public static final String SYS_USER= "SYS_USER";
 
-    public static User getUserInfo(HttpServletRequest request)  {
+    public static StuUserEntity getUserInfo(HttpServletRequest request)  {
         HttpSession session = request.getSession();
         Object user = session.getAttribute(USER_INFO);
-        return (User) user;
+        return (StuUserEntity) user;
     }
 
-    public static User setUserInfo(HttpServletRequest request, User user)  {
+    public static StuUserEntity setUserInfo(HttpServletRequest request, StuUserEntity user)  {
         HttpSession session = request.getSession();
         session.setAttribute(USER_INFO, user);
         return user;
     }
 
-    public static User clearUserInfo(HttpServletRequest request)  {
+    public static StuUserEntity clearUserInfo(HttpServletRequest request)  {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute(USER_INFO);
+        StuUserEntity user = (StuUserEntity) session.getAttribute(USER_INFO);
         session.setAttribute(USER_INFO, null);
         return user;
     }
 
-    public static SysUser getSysUser(HttpServletRequest request) {
+    public static SysUserEntity getSysUser(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        SysUser user = (SysUser) session.getAttribute(SYS_USER);
+        SysUserEntity user = (SysUserEntity) session.getAttribute(SYS_USER);
         return user;
     }
 
-    public static SysUser setSysUser(HttpServletRequest request, SysUser user) {
+    public static SysUserEntity setSysUser(HttpServletRequest request, SysUserEntity user) {
         HttpSession session = request.getSession();
         session.setAttribute(SYS_USER, user);
         return user;
