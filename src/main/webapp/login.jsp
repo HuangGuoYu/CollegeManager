@@ -15,7 +15,6 @@
         body{
             background: url('layui/images/background/ef216d2b32a23d502b85656ceac6da6ef7aa2f0013a39-oDX5fm_fw658.jpg')top center no-repeat;
             background-size:cover;
-
         }
         .loginc{
             /*height: 50%;高度宽度自适应居中*/
@@ -112,7 +111,6 @@
                                 window.location.href = "${pageContext.request.contextPath}/superadmin.jsp";
                                 break;
                         }
-
                    }
                    else{
                        layer.alert(data.msg);

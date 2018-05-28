@@ -18,6 +18,7 @@ import java.util.Map;
  */
 @Repository
 public class BaseDaoImpl implements BaseDao {
+
     @Autowired
     SessionFactory sessionFactory;
 
