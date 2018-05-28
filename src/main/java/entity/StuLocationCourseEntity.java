@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_location_course", schema = "collegemanager", catalog = "")
@@ -14,7 +14,6 @@ public class StuLocationCourseEntity {
     private String slcContent;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "slc_id", nullable = false)
     public int getSlcId() {
         return slcId;

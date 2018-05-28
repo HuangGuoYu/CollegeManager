@@ -1,11 +1,9 @@
 package entity;
 
-import jdk.nashorn.internal.runtime.logging.Logger;
-
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_course", schema = "collegemanager", catalog = "")
@@ -15,7 +13,6 @@ public class StuCourseEntity {
     private Integer scCourseid;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sc_id", nullable = false)
     public int getScId() {
         return scId;

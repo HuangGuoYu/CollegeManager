@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "tbl_class", schema = "collegemanager", catalog = "")
@@ -13,7 +13,6 @@ public class TblClassEntity {
     private Integer classSysid;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "class_id", nullable = false)
     public int getClassId() {
         return classId;

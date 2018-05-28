@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_sign", schema = "collegemanager", catalog = "")
@@ -14,9 +14,9 @@ public class StuSignEntity {
     private Integer ssCourseid;
     private Integer ssStatus;
     private Date ssDate;
+    private Integer ssCourseListId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ss_id", nullable = false)
     public int getSsId() {
         return ssId;
@@ -66,6 +66,16 @@ public class StuSignEntity {
         this.ssDate = ssDate;
     }
 
+    @Basic
+    @Column(name = "ss_courseListId", nullable = true)
+    public Integer getSsCourseListId() {
+        return ssCourseListId;
+    }
+
+    public void setSsCourseListId(Integer ssCourseListId) {
+        this.ssCourseListId = ssCourseListId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,6 +88,8 @@ public class StuSignEntity {
         if (ssCourseid != null ? !ssCourseid.equals(that.ssCourseid) : that.ssCourseid != null) return false;
         if (ssStatus != null ? !ssStatus.equals(that.ssStatus) : that.ssStatus != null) return false;
         if (ssDate != null ? !ssDate.equals(that.ssDate) : that.ssDate != null) return false;
+        if (ssCourseListId != null ? !ssCourseListId.equals(that.ssCourseListId) : that.ssCourseListId != null)
+            return false;
 
         return true;
     }
@@ -89,6 +101,7 @@ public class StuSignEntity {
         result = 31 * result + (ssCourseid != null ? ssCourseid.hashCode() : 0);
         result = 31 * result + (ssStatus != null ? ssStatus.hashCode() : 0);
         result = 31 * result + (ssDate != null ? ssDate.hashCode() : 0);
+        result = 31 * result + (ssCourseListId != null ? ssCourseListId.hashCode() : 0);
         return result;
     }
 }
