@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CqustClient {
@@ -110,6 +111,21 @@ public class CqustClient {
         info.putAll(xjxx);
         info.putAll(dormInfo);
         return info;
+    }
+
+    //获得课表信息
+    public List<Map<String, Object>> getCourseInfo(Map<String, String> cookies) throws IOException {
+        String url = "http://jwnew.cqust.edu.cn/eams/courseTableForStd!courseTable.action";
+        if (cookies == null || cookies.isEmpty()) {
+            return null;
+        }
+        Document document = Jsoup.connect(url)
+                .cookies(cookies)
+                .header("Connection", "close")
+                .get();
+        Elements elements = document.select("#grid12042826912");
+        System.out.println(document.body().html());
+        return null;
     }
 
     //获取学籍信息
