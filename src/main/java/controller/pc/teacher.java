@@ -51,8 +51,5 @@ public class teacher extends BaseController {
         return result.ok(dbentity);
     }
 
-    @RequestMapping("/test")
-    public String test() {
-        return "teacher/signinjsp";
-    }
+
 }
