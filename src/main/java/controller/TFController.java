@@ -10,7 +10,7 @@ import service.mobile.FuDaoService;
 
 @RestController
 @RequestMapping("/tf")
-public class SysUserController extends BaseController {
+public class TFController extends BaseController {
 
     @Autowired
     private FuDaoService fuDaoService;
@@ -46,6 +46,7 @@ public class SysUserController extends BaseController {
         result = fuDaoService.getListStuByClassId(stu_classid);
         return result;
     }
+
 
 
 }
