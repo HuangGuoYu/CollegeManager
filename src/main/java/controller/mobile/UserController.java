@@ -36,5 +36,9 @@ public class UserController extends BaseController {
         return userInfo;
     }
 
+    @RequestMapping("/hello")
+    public String hello() {
+        return "hello";
+    }
 
 }
