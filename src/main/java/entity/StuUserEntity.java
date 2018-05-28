@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_user", schema = "collegemanager", catalog = "")
@@ -18,7 +18,6 @@ public class StuUserEntity {
     private Integer stuClassid;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "stu_id", nullable = false)
     public int getStuId() {
         return stuId;
@@ -103,16 +102,16 @@ public class StuUserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StuUserEntity that = (StuUserEntity) o;
+        StuUserEntity entity = (StuUserEntity) o;
 
-        if (stuId != that.stuId) return false;
-        if (stuUsername != null ? !stuUsername.equals(that.stuUsername) : that.stuUsername != null) return false;
-        if (stuPassword != null ? !stuPassword.equals(that.stuPassword) : that.stuPassword != null) return false;
-        if (stuName != null ? !stuName.equals(that.stuName) : that.stuName != null) return false;
-        if (stuGender != null ? !stuGender.equals(that.stuGender) : that.stuGender != null) return false;
-        if (stuTel != null ? !stuTel.equals(that.stuTel) : that.stuTel != null) return false;
-        if (sysEmail != null ? !sysEmail.equals(that.sysEmail) : that.sysEmail != null) return false;
-        if (stuClassid != null ? !stuClassid.equals(that.stuClassid) : that.stuClassid != null) return false;
+        if (stuId != entity.stuId) return false;
+        if (stuUsername != null ? !stuUsername.equals(entity.stuUsername) : entity.stuUsername != null) return false;
+        if (stuPassword != null ? !stuPassword.equals(entity.stuPassword) : entity.stuPassword != null) return false;
+        if (stuName != null ? !stuName.equals(entity.stuName) : entity.stuName != null) return false;
+        if (stuGender != null ? !stuGender.equals(entity.stuGender) : entity.stuGender != null) return false;
+        if (stuTel != null ? !stuTel.equals(entity.stuTel) : entity.stuTel != null) return false;
+        if (sysEmail != null ? !sysEmail.equals(entity.sysEmail) : entity.sysEmail != null) return false;
+        if (stuClassid != null ? !stuClassid.equals(entity.stuClassid) : entity.stuClassid != null) return false;
 
         return true;
     }

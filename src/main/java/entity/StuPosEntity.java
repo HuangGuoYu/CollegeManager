@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Time;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_pos", schema = "collegemanager", catalog = "")
@@ -18,7 +18,6 @@ public class StuPosEntity {
     private Integer spStatus;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sp_id", nullable = false)
     public int getSpId() {
         return spId;

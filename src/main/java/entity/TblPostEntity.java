@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "tbl_post", schema = "collegemanager", catalog = "")
@@ -18,7 +18,6 @@ public class TblPostEntity {
     private String pStu;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "p_id", nullable = false)
     public int getpId() {
         return pId;

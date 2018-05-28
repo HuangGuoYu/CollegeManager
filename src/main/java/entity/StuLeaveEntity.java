@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.sql.Date;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "stu_leave", schema = "collegemanager", catalog = "")
@@ -17,7 +17,6 @@ public class StuLeaveEntity {
     private Integer slStatus;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sl_id", nullable = false)
     public int getSlId() {
         return slId;

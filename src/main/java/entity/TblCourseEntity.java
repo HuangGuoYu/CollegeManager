@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "tbl_course", schema = "collegemanager", catalog = "")
@@ -15,7 +15,6 @@ public class TblCourseEntity {
     private String courseTime;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "course_id", nullable = false)
     public int getCourseId() {
         return courseId;

@@ -3,7 +3,7 @@ package entity;
 import javax.persistence.*;
 
 /**
- * Created by Administrator on 2018/5/7.
+ * Created by Administrator on 2018/5/28.
  */
 @Entity
 @Table(name = "sys_user", schema = "collegemanager", catalog = "")
@@ -18,7 +18,6 @@ public class SysUserEntity {
     private String sysEmail;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "sys_id", nullable = false)
     public int getSysId() {
         return sysId;
@@ -103,16 +102,16 @@ public class SysUserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SysUserEntity that = (SysUserEntity) o;
+        SysUserEntity entity = (SysUserEntity) o;
 
-        if (sysId != that.sysId) return false;
-        if (sysUsername != null ? !sysUsername.equals(that.sysUsername) : that.sysUsername != null) return false;
-        if (sysPassword != null ? !sysPassword.equals(that.sysPassword) : that.sysPassword != null) return false;
-        if (sysName != null ? !sysName.equals(that.sysName) : that.sysName != null) return false;
-        if (sysGender != null ? !sysGender.equals(that.sysGender) : that.sysGender != null) return false;
-        if (sysTel != null ? !sysTel.equals(that.sysTel) : that.sysTel != null) return false;
-        if (sysIdentity != null ? !sysIdentity.equals(that.sysIdentity) : that.sysIdentity != null) return false;
-        if (sysEmail != null ? !sysEmail.equals(that.sysEmail) : that.sysEmail != null) return false;
+        if (sysId != entity.sysId) return false;
+        if (sysUsername != null ? !sysUsername.equals(entity.sysUsername) : entity.sysUsername != null) return false;
+        if (sysPassword != null ? !sysPassword.equals(entity.sysPassword) : entity.sysPassword != null) return false;
+        if (sysName != null ? !sysName.equals(entity.sysName) : entity.sysName != null) return false;
+        if (sysGender != null ? !sysGender.equals(entity.sysGender) : entity.sysGender != null) return false;
+        if (sysTel != null ? !sysTel.equals(entity.sysTel) : entity.sysTel != null) return false;
+        if (sysIdentity != null ? !sysIdentity.equals(entity.sysIdentity) : entity.sysIdentity != null) return false;
+        if (sysEmail != null ? !sysEmail.equals(entity.sysEmail) : entity.sysEmail != null) return false;
 
         return true;
     }
