@@ -49,10 +49,11 @@
     $(function () {
         var data = '${user.slc_content}';
         var classList=JSON.parse(data);
+        var blank="&nbsp;&nbsp;";
        $.each(classList,function (index1,item1) {
            var tr=$("<tr></tr>");
             $.each(item1,function (index2,item2) {
-                var str=item2.name+item2.teacher+item2.location+item2.range;
+                var str=item2.name+blank+item2.teacher+blank+item2.location+blank+item2.range;
                 var clssinfo=$("<td></td>").append(str);
                 tr.append(clssinfo);
             })
