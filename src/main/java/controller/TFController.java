@@ -74,6 +74,7 @@ public class TFController extends BaseController {
      */
     @RequestMapping(value = "/addAnnouncement",method = RequestMethod.POST)
     public GeneralResult addAnnouncement(@RequestBody TblPostEntity tblPostEntity){
+        System.out.println("------>添加公告信息");
         GeneralResult result;
         result = fuDaoService.addAnnouncement(tblPostEntity);
         return result;
@@ -85,7 +86,7 @@ public class TFController extends BaseController {
      * @return
      */
     @RequestMapping(value = "/deleteAnnouncement/{p_id}",method = RequestMethod.GET)
-    public GeneralResult deleteAnnouncement(@RequestParam("p_id") Integer p_id){
+    public GeneralResult deleteAnnouncement(@PathVariable("p_id") Integer p_id){
         GeneralResult result;
         result = fuDaoService.deleteAnnouncement(p_id);
         return result;
