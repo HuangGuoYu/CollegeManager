@@ -3,12 +3,14 @@ package controller.pc;
 import common.BaseController;
 import dao.BaseDao;
 import entity.StuLeaveEntity;
+import entity.SysUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import resp.GeneralResult;
 
@@ -39,13 +41,23 @@ public class ZhuZhuStuController extends BaseController {
         return  "studentInfo";
     }
 
-    @RequestMapping("/leave")
+    @RequestMapping(value = "/leave",method = RequestMethod.POST,produces="application/json;charset=UTF-8;")
     @ResponseBody
     public GeneralResult leave(StuLeaveEntity stuLeaveEntity){
 
+        SysUserEntity sessionSysUser = getSessionSysUser();
+        //获取學生ID
+        int sysId = sessionSysUser.getSysId();
+        stuLeaveEntity.setSlStatus(sysId);
         baseDao.execEntitySave(stuLeaveEntity);
 
         return new GeneralResult().ok(true);
+    }
+
+    @RequestMapping("/studentLeave")
+    public String test(){
+
+        return "studentLeave";
     }
 
     @RequestMapping("/queryClaaById")
@@ -55,13 +67,6 @@ public class ZhuZhuStuController extends BaseController {
         request.setAttribute("user",bySql.get(0));
         return "queryClassById";
     }
-
-    @RequestMapping("/test")
-    public String test(){
-
-        return "studentLeave";
-    }
-
 
 }
 

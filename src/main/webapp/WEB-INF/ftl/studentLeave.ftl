@@ -21,7 +21,7 @@
 
         .course_table td {
             font-size: 0.925em;
-            height: 5em;
+            height: 2.5em;
             border-bottom: 2px solid #eee;
             border-right: 2px solid #eee;
             text-align: center;
@@ -37,7 +37,7 @@
 
         input {
             width: 100%;
-            height: 4em;
+            height: 2.5em;
             border: 0px;
             border-bottom-style: none;
             border-bottom: #00A862;
@@ -53,14 +53,13 @@
             margin-left: 75%;
             line-height: 24px;
             margin-top: 20px;
-            width: 68px;
+            width: 88px;
             background: none;
             border: 1px solid #00A862;
             border-top-color: rgb(0, 168, 98);
             border-right-color: rgb(0, 168, 98);
             border-bottom-color: rgb(0, 168, 98);
             border-left-color: rgb(0, 168, 98);
-            border-radius: 48px;
             box-sizing: border-box;
             color: #00A862;
             display: inline-block;
@@ -76,29 +75,44 @@
     </style>
 </head>
 <body>
-<table class="course_table">
-    <tbody id="course_html">
-    <tr>
-        <td>原因</td>
-        <td><input type="text"></td>
-    </tr>
-    <tr>
-        <td>开始时间</td>
-        <td><input type="text" data-field="time" readonly></td>
-    </tr>
-    <tr>
-        <td>结束时间</td>
-        <td><input type="text" data-field="time" readonly></td>
-    </tr>
-    </tbody>
-</table>
-<button class="">确定</button>
+<form id="leaveForm">
+    <table class="course_table">
+        <tbody id="course_html">
+        <tr>
+            <td>原因</td>
+            <td><input type="text" name="slReason"></td>
+        </tr>
+        <tr>
+            <td>开始时间</td>
+            <td><input type="text" data-field="date" readonly name="slBegindate"></td>
+        </tr>
+        <tr>
+            <td>结束时间</td>
+            <td><input type="text" data-field="date" readonly name="slEnddate"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</form>
+<button id="submitForm">提交</button>
 <div id="dtBox"></div>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#dtBox").DateTimePicker();
+        $("#dtBox").DateTimePicker({});
     });
+    $("#submitForm").click(function () {
+        $.ajax({
+            type:"POST",
+            url:"/student/leave",
+            data:$('#leaveForm').serialize(),
+            success:function(data){
+                if(data.code==200){
+                    alert（"添加成功");
+                }
+            }
+        })
+    })
 </script>
 </body>
 </html>

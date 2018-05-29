@@ -23,8 +23,8 @@
 			timeMeridiemSeparator: " ",
 			dateTimeSeparator: " ",
 		
-			dateTimeFormat: "dd-MM-yyyy HH:mm:ss",
-			dateFormat: "dd-MM-yyyy",
+			dateTimeFormat: "yyyy-mm-dd HH:mm:ss",
+			dateFormat: "yyyy-mm-dd",
 			timeFormat: "HH:mm",
 		
 			maxDate: null,
