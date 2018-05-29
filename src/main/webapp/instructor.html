@@ -1,15 +1,13 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html ondragstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>教师端</title>
+    <title>辅导员端</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
-    <script src="js/qrcode.js"></script>
     <style>
         /* 下拉多选样式 需要引用*/
         select[multiple]+.layui-form-select>.layui-select-title>input.layui-input{ border-bottom: 0}
@@ -17,7 +15,7 @@
         select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary]{ margin:0 !important; display:block; line-height:36px !important; position:relative; padding-left:26px;}
         select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] span{line-height:36px !important; float:none;}
         select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i{ position:absolute; left:10px; top:0; margin-top:9px;}
-          .multiSelect{ line-height:normal; height:auto; padding:4px 10px; overflow:hidden;min-height:38px; margin-top:-38px; left:0; z-index:99;position:relative;background:none;}
+        .multiSelect{ line-height:normal; height:auto; padding:4px 10px; overflow:hidden;min-height:38px; margin-top:-38px; left:0; z-index:99;position:relative;background:none;}
         .multiSelect a{ padding:2px 5px; background:#908e8e; border-radius:2px; color:#fff; display:block; line-height:20px; height:20px; margin:2px 5px 2px 0; float:left;}
         .multiSelect a span{ float:left;}
         .multiSelect a i {float:left;display:block;margin:2px 0 0 2px;border-radius:2px;width:8px;height:8px;padding:4px;position:relative;-webkit-transition:all .3s;transition:all .3s}
@@ -25,7 +23,7 @@
         .multiSelect a i:before {-webkit-transform:rotate(45deg);transform:rotate(45deg)}
         .multiSelect a i:after {-webkit-transform:rotate(-45deg);transform:rotate(-45deg)}
         .multiSelect a i:hover{ background-color:#545556;}
-
+    	
         .box {
             display: box;
             display: -moz-box;
@@ -76,69 +74,34 @@
         <div id="bottom-left" style="width: 200px">
             <ul class="layui-nav layui-nav-tree  layui-nav-side" lay-filter="demo" style="margin-right: 10px;margin-top: 60px; ">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">课程管理</a>
+                    <a href="javascript:;">学生管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="#" onclick="doCourseInfo()">查看课程信息</a></dd>
+                        <dd><a href="#" onclick="doStuBSchool()">学生返校</a></dd>
+                        <dd><a href="#" onclick="doLeaveApproval()">请假批准<span class="layui-badge">9</span></a></dd>
+                        <dd><a href="#" onclick="doSeeStuLeave()">查看请假学生</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a href="javascript:;">公告</a>
+                   <a href="javascript:;">公告</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="#" onclick="doTeacherAnnouncement()">发布</a></dd>
-                        <dd><a href="#" onclick="doTeacherSeeAnnouncement()">查看</a></dd>
+                        <dd><a href="#" onclick="doInstructoAnnouncement()">发布</a></dd>
+                        <dd><a href="#" onclick="doInstructoSeeAnnouncement()">查看</a></dd>
                     </dl>
                 </li>
             </ul>
         </div>
-        <div id="bottom-right" class="flex1" >
+        <div id="bottom-right" class="flex1">
         	
         </div>
     </div>
 </div>
 
-<!--弹窗-->
-<div class="tc-html">
-     <div class="tc-tittle">
-         <ul>
-         	<li>
-         		<span class="close">X</span>
-         	</li>
-         	<li><span class="li-tittle">班级详情</span></li>
-         </ul>
-     </div>
-     <div class="tc-midle">
-     	<div class="tc-midle-left">
-     		<input type="text" placeholder="请选择时间" class="layui-input" id="tc-date"/>
-     	</div>
-     	<div class="tc-midle-right">
-     		<button class="layui-btn" onclick="doHistorySign()">查看历史出勤</button>
-     		<button class="layui-btn layui-btn-normal">查看今日出勤</button>
-     	</div>
-     </div>
-     
-     <div class="tc-context" id="tc-bottom">
-     	
-     </div>
-</div>
-<div class="tc-mask"></div>
-
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="layui/layui.js" charset="utf-8"></script>
 <script type="text/javascript" src="js/jquery-3.2.1.min.js" ></script>
 <script type="text/javascript" src="js/index.js" ></script>
-<script src="layui/layui.js" charset="utf-8"></script>
-<script src="js/comon.js" charset="utf-8"/>
-<script src="js/teacherAnnouncement.js" charset="utf-8"></script>
- 
+
 <script>
-	layui.use('laydate', function(){
-	  var laydate = layui.laydate;
-	  
-	  //执行一个laydate实例
-	  laydate.render({
-	    elem: '#tc-date' //指定元素
-	  });
-	});
-	
     layui.use('element', function () {
         var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
@@ -152,14 +115,6 @@
         console.log(url);
         $("#bottom-right iframe").attr("src",url);
     };
-    
-    jQuery(document).ready(function($) {
-		$('.tc-tittle .close').click(function(){
-			$('.tc-mask').fadeOut(100);
-			$('.tc-html').slideUp(200);
-		})
-	
-	})
 </script>
 </body>
 </html>

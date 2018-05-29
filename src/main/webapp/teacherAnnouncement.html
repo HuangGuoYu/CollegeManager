@@ -1,0 +1,67 @@
+<script>
+layui.use('form', function(){
+  var form = layui.form;
+    $(function () {
+        $.ajax({
+            url:'/tf/getClassBySys_userId',
+            type:"POST",
+            dataType:"json",
+            data:{
+                "id":"1"
+            },
+            success:function(data) {
+                if (data.code == 200){
+                    //console.log(data.data);
+                    var item;
+                    var list = data.data;
+                    for (var i = 0; i < list.length ; i++){
+                        item = "<option value="+list[i].classSysid+">"+list[i].className+"</option>";
+                        var obj=document.getElementById('sc');
+                        $("#sc").append('<option value="'+ list[i].classSysid +'">' + list[i].className + '</option>');
+                        console.log(obj.innerHTML);
+                        //renderForm();
+                        //$("#sc").append(item);
+                        //document.getElementById("sc");
+                        //console.log(list[i].classSysid);
+                    }
+                    form.render('select');
+                }
+            },
+            error:function (data) {
+
+            }
+        });
+    });
+});
+</script>
+<!--<script type="text/javascript" src="js/comon.js"></script>-->
+<from class="layui-form">
+  <div class="layui-form-item">
+    <label class="layui-form-label">标题</label>
+    <div class="layui-input-block">
+      <input id="biaoti" style="width: 45%;" type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-block">
+    <label class="layui-form-label">班级</label>
+    <div class="layui-input-inline">
+        <select multiple id="sc" name="sdasdsad">
+            <option value="1">123</option>
+            <option value="1">456</option>
+        </select>
+    </div>
+	</div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">公告内容</label>
+    <div class="layui-input-block">
+      <textarea style="width: 50%; height: 400px;" name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+    </div>
+  </div>
+</from>
+
+

@@ -1,0 +1,63 @@
+
+<script>
+    $(function(){
+        console.log("渲染请假结果table");
+        $.ajax({
+            url:'/counselor/leaveResult',
+            type:"POST",
+            dataType:"json",
+            success:function(data) {
+                if (data.code == 200){
+                    var list = data.data;
+                    for (var i = 0; i < list.length ; i++){
+                        var row = $("#leavebody").clone();
+                        row.find("#stu_username").text(list[i].stu_username);
+                        row.find("#stu_name").text(list[i].stu_name);
+                        row.find("#class_name").text(list[i].class_name);
+                        row.find("#begintime").text(list[i].sl_begindate);
+                        row.find("#endtime").text(list[i].sl_enddate);
+                        row.find("#resion").text(list[i].sl_reason);
+                        if(list[i].sl_status == 2){
+                            row.find("#statue").append("批准");
+                        } else{
+                            row.find("#statue").append("未批准");
+                        }
+
+                        row.appendTo("#leavetable");
+                    }
+                }
+            },
+            error:function (data) {
+            }
+        });
+    });
+
+</script>
+<table class="layui-table" id="leavetable">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>班级</th>
+        <th>请假开始日期</th>
+        <th>请假结束日期</th>
+        <th>请假原因</th>
+        <th>请假结果</th>
+    </tr>
+    </thead>
+    <tbody >
+    <tr id="leavebody">
+        <td id="stu_username"></td>
+        <td id="stu_name"></td>
+        <td id="class_name"></td>
+        <td id="begintime"></td>
+        <td id="endtime"></td>
+        <td id="resion"></td>
+        <td id="statue"></td>
+    </tr>
+    </tbody>
+</table>

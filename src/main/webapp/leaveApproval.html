@@ -1,0 +1,69 @@
+
+<script>
+  $(function(){
+      console.log("渲染请假table");
+      $.ajax({
+          url:'/counselor/Apply',
+          type:"POST",
+          dataType:"json",
+          success:function(data) {
+              if (data.code == 200){
+                  //console.log(data.data);
+                  var row = $("#leavebody").clone();
+                  console.log(row);
+                  var list = data.data;
+                  for (var i = 0; i < list.length ; i++){
+                      console.log(list[i].stu_username);
+                      row.find("#stu_username").text(list[i].stu_username);
+                      row.find("#stu_name").text(list[i].stu_name);
+                      row.find("#class_name").text(list[i].class_name);
+                      row.find("#begintime").text(list[i].sl_begindate);
+                      row.find("#endtime").text(list[i].sl_enddate);
+                      row.find("#resion").text(list[i].sl_reason);
+                      row.find("#stu_id").text(list[i].stu_id);
+                      row.find("#sl_id").text(list[i].sl_id);
+                      var btn1=$('<button \tclass="layui-btn layui-btn-primary">批准</button><button class="layui-btn layui-btn-danger">拒绝</button>');
+                      row.find("#class_operation").append(btn1);
+                      row.appendTo("#leavetable");
+                  }
+              }
+          },
+          error:function (data) {
+          }
+      });
+  });
+
+</script>
+<table class="layui-table" id="leavetable">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>班级</th>
+      <th>请假开始日期</th>
+      <th>请假结束日期</th>
+      <th>请假原因</th>
+      <th>操作</th>
+      <th style="display: none">学生id</th>
+      <th style="display: none">请假表id</th>
+    </tr> 
+  </thead>
+  <tbody >
+    <tr id="leavebody">
+      <td id="stu_username"></td>
+      <td id="stu_name"></td>
+      <td id="class_name"></td>
+      <td id="begintime"></td>
+      <td id="endtime"></td>
+      <td id="resion"></td>
+      <td id="class_operation"></td>
+      <td style="display: none" id="stu_id"></td>
+      <td style="display: none" id="sl_id"></td>
+
+    </tr>
+  </tbody>
+</table>
