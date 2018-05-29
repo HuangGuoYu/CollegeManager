@@ -1,28 +1,55 @@
-<table id="demo" lay-filter="test"></table>
- 
-<script src="/layui/layui.js"></script>
+<table class="layui-table">
+    <colgroup>
+        <col width="150">
+        <col width="200">
+    </colgroup>
+    <thead>
+    <tr>
+        <th>课程id</th>
+        <th>课程名称</th>
+        <th>课程教师id</th>
+        <th>课程地点</th>
+        <th>课程时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td id="course_id">101</td>
+        <td id="course_name">c++</td>
+        <td id="course_sysname">王慧蕊</td>
+        <td id="course_address">H105</td>
+        <td id="course_time">7-8</td>
+        <td id="class_operation"><button onclick="doFind()" class="layui-btn">查看详情</button><button id="startCall" class="layui-btn layui-btn-normal">开始点名</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<div class="call-html">
+    <div class="call-tittle">
+        <ul>
+            <li>
+                <span class="close">X</span>
+            </li>
+        </ul>
+    </div>
+    <div class="call-context">
+        <div id="qrcode">
+
+        </div>
+    </div>
+</div>
+<div class="call-mask"></div>
+
 <script>
-layui.use('table', function(){
-  var table = layui.table;
-  
-  //第一个实例
-  table.render({
-    elem: '#demo'
-    ,height: 315
-    ,url: '/demo/table/user/' //数据接口
-    ,page: true //开启分页
-    ,cols: [[ //表头
-      {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
-      ,{field: 'username', title: '用户名', width:80}
-      ,{field: 'sex', title: '性别', width:80, sort: true}
-      ,{field: 'city', title: '城市', width:80} 
-      ,{field: 'sign', title: '签名', width: 177}
-      ,{field: 'experience', title: '积分', width: 80, sort: true}
-      ,{field: 'score', title: '评分', width: 80, sort: true}
-      ,{field: 'classify', title: '职业', width: 80}
-      ,{field: 'wealth', title: '财富', width: 135, sort: true}
-    ]]
-  });
-  
-});
+        $('#startCall').click(function(){
+            $('.call-mask').fadeIn(100);
+            $('.call-html').slideDown(200);
+        })
+        $('.call-tittle .close').click(function(){
+            $('.call-mask').fadeOut(100);
+            $('.call-html').slideUp(200);
+        })
+
+    })
 </script>

@@ -49,8 +49,19 @@ public class FuDaoServiceImpl implements FuDaoService {
     @Override
     public GeneralResult getBackSchoolStuBySys() {
         GeneralResult result = new GeneralResult();
-        String hql = "from TblClassEntity";
-        List<TblClassEntity> tbs = baseDao.findEntityByHql(hql,null);
+        String hql = "SELECT * from \n" +
+                "(\n" +
+                "SELECT tbl_class.*,count(stu_id) as stucount \n" +
+                "FROM  tbl_class,stu_user \n" +
+                "where class_id = stu_classid group by class_id\n" +
+                ") a LEFT JOIN\n" +
+                "(\n" +
+                "SELECT b.stu_classid,COUNT(0) num from stu_pos a \n" +
+                "LEFT JOIN stu_user b on a.sp_stuid = b.stu_id\n" +
+                "LEFT JOIN tbl_class c on b.stu_classid = c.class_id\n" +
+                "GROUP BY stu_classid \n" +
+                ") b on a.class_id = b.stu_classid";
+        List<Map<String, Object>> tbs = baseDao.findBySql(hql, null);
         result.ok(200,tbs);
         return result;
     }
@@ -58,10 +69,20 @@ public class FuDaoServiceImpl implements FuDaoService {
     @Override
     public GeneralResult getListStuByClassId(Integer stu_classid) {
         GeneralResult result = new GeneralResult();
-        String hql = "from StuUserEntity where stu_classid = :stu_classid";
+        String hql = "select stu_user.stu_name,stu_user.stu_username,stu_pos.sp_status ,stu_pos.sp_time,stu_leave.sl_begindate,stu_leave.sl_enddate,(\n" +
+                "CASE stu_leave.sl_status\n" +
+                "\tWHEN 2 THEN\n" +
+                "\t\t'已请假' \n" +
+                "\tELSE\n" +
+                "\t\t'未请假'\n" +
+                "END\n" +
+                ") as l_leave \n" +
+                "from stu_user left join stu_pos on stu_user.stu_id = stu_pos.sp_stuid LEFT JOIN stu_leave ON stu_leave.sl_stuid = stu_user.stu_id\n" +
+                "WHERE \n" +
+                "stu_user.stu_classid = :stu_classid";
         Map<String, Object> params = new HashMap<>();
         params.put("stu_classid", stu_classid);
-        List<StuUserEntity> listStu = baseDao.findEntityByHql(hql,params);
+        List<Map<String, Object>> listStu = baseDao.findBySql(hql, params);
         return result.ok(200,listStu);
     }
 
@@ -69,7 +90,7 @@ public class FuDaoServiceImpl implements FuDaoService {
     public GeneralResult getListAnnouncement() {
         GeneralResult result = new GeneralResult();
         String hql = "from TblPostEntity";
-        List<TblPostEntity> tbs = baseDao.findEntityByHql(hql,null);
+        List<Map<String, Object>> tbs = baseDao.findBySql(hql, null);
         result.ok(200,tbs);
         return result;
     }
