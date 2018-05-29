@@ -79,6 +79,11 @@ public class TFController extends BaseController {
         return result;
     }
 
+    /**
+     * 删除公告信息
+     * @param p_id
+     * @return
+     */
     @RequestMapping(value = "/deleteAnnouncement/{p_id}",method = RequestMethod.GET)
     public GeneralResult deleteAnnouncement(@RequestParam("p_id") Integer p_id){
         GeneralResult result;
