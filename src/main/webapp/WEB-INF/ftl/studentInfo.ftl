@@ -13,6 +13,12 @@
 				line-height: 100px;
 				text-align: center;
 			}
+            @media only screen and (max-width: 480px) {
+                .d-table {
+                    width:450px;
+					height: auto;
+                }
+            }
 		</style>
 	</head>
 
@@ -22,32 +28,32 @@
 				 我的资料 
 			</div>-->
  
-		<div class="table-responsive" style="    padding-top: 20px;">
+		<div class="table-responsive" id="d-table" style="    padding-top: 20px;">
 			<table class="table table-striped table-bordered table-hover">
 				<tbody>
 					<tr >
 						 <td >姓名</td>
-						 <td >${user.stu_name}</td>
+						 <td >${user.stu_name!}</td>
 					</tr>
 					<tr >
 						 <td >性别</td>
-						 <td >${user.stu_gender}</td>
+						 <td >${user.stu_gender!}</td>
 					</tr>
 					<tr >
 						 <td >电话</td>
-						 <td >${user.stu_tel}</td>
+						 <td >${user.stu_tel!}</td>
 					</tr>
 					<tr >
 						 <td >邮箱</td>
-						 <td >${user.sys_email}</td>
+						 <td >${user.sys_email!}</td>
 					</tr>
 					<tr >
 						 <td >班级</td>
-						 <td >${user.class_name}</td>
+						 <td >${user.class_name!}</td>
 					</tr>
 					<tr >
 						 <td >辅导员</td>
-						 <td >${user.sys_name}</td>
+						 <td >${user.sys_name!}</td>
 					</tr>
 				</tbody>
 			</table>

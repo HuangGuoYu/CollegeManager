@@ -54,7 +54,9 @@ public class teacher extends BaseController {
         stuSignEntity.setSsStatus(1);
        try{
            baseDao.execEntitySave(stuSignEntity);
-           return result.ok(200,"签到成功");
+           GeneralResult<?> res = result.ok(200, "签到成功");
+           res.setMsg("签到成功");
+           return res;
        }
         catch (Exception e){
            return result.error(500,"签到失败，请重试");
