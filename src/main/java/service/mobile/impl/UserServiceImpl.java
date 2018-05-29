@@ -13,6 +13,8 @@ import utils.DataUtils;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,8 +78,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public GeneralResult backSchool(StuPosEntity stuPosEntity) {
-
-        return null;
+        GeneralResult<String> result = new GeneralResult();
+        Date date = new Date();
+        stuPosEntity.setSpTime(date);
+        stuPosEntity.setSpStatus(1);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String curDateStr = simpleDateFormat.format(date);
+        String sql = "select sp_id  from stu_pos where sp_stuid=:uid and date_format(sp_time,'%Y-%m-%d')=:curDate";
+        Map<String, Object> params = new HashMap<>();
+        params.put("uid", stuPosEntity.getSpStuid());
+        params.put("curDate", curDateStr);
+        List<Map<String, Object>> count = baseDao.findBySql(sql, params);
+        if (count.size() != 0) {
+            return result.error(401, "当前已经成功签到返校");
+        }
+        baseDao.execEntitySave(stuPosEntity);
+        result.setMsg("返校成功");
+        return result;
     }
 
     @Override
