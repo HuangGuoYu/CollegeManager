@@ -99,10 +99,10 @@
                         switch (sysIdentity){
                             case '1':
                                 console.log("${pageContext.request.contextPath}/teacher.jsp");
-                                window.location.href = "${pageContext.request.contextPath}/teacher.jsp";
+                                window.location.href = "${pageContext.request.contextPath}/teacher.html";
                                 break;
                             case '2':
-                                window.location.href = "${pageContext.request.contextPath}/counselor.jsp";
+                                window.location.href = "${pageContext.request.contextPath}/instructor.html";
                                 break;
                             case '3':
                                 window.location.href = "${pageContext.request.contextPath}/admin.jsp";

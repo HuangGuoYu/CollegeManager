@@ -45,14 +45,16 @@ public class czt extends BaseController {
     public GeneralResult Applyleave(HttpServletRequest request, HttpSession session) {
         GeneralResult result = new GeneralResult();
         SysUserEntity sessionSysUser = getSessionSysUser();
-        String hql = "select stu_leave.*,stu_user.* from  stu_leave,stu_user where sl_stuid in (\n" +
-                "select stu_id from stu_user where stu_classid in (select class_id from tbl_class where class_sysid = :sysUserId)) \n" +
-                "and sl_status = 1 and sl_stuid = stu_id";
+        String hql = "select * from  stu_leave,stu_user, tbl_class where sl_stuid \n" +
+                "in (select stu_id from stu_user where stu_classid \n" +
+                "in (select class_id from tbl_class where class_sysid = :sysUserId)) \n" +
+                "and sl_status = 1 and sl_stuid = stu_id and stu_classid = class_id";
         Map<String, Object> parms = new HashMap<>();
         SysUserEntity user = (SysUserEntity) session.getAttribute("user");
         parms.put("sysUserId",user.getSysId());
-        List<Object> dbentity = baseDao.findEntityByHql(hql, parms);
-        return result.ok(dbentity);
+        System.out.println(user.getSysId());
+        List<Map<String, Object>> bySql = baseDao.findBySql(hql, parms);
+        return result.ok(bySql);
     }
 
     //辅导员查看本班级的请假结果
