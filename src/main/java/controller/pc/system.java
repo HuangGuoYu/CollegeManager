@@ -49,10 +49,10 @@ public class system extends BaseController {
         parms.put("password",user.getSysPassword());
         parms.put("identity",user.getSysIdentity());
         List<Object> dbentity = baseDao.findEntityByHql(hql,parms);
-
         if(dbentity.size()!=0){
             System.out.println("查到");
             session.setAttribute("user",dbentity.get(0));
+            ServletUtils.setSysUser(request,(SysUserEntity)dbentity.get(0));
             return result.ok(dbentity);
         }
         else {

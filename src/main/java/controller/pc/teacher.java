@@ -2,8 +2,8 @@ package controller.pc;
 
 import common.BaseController;
 import dao.BaseDao;
-import entity.SysUserEntity;
-import entity.TblCourseEntity;
+import entity.StuSignEntity;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -17,6 +17,8 @@ import resp.GeneralResult;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,15 +42,23 @@ public class teacher extends BaseController {
 
     @RequestMapping("/signin")
     @ResponseBody
-    public GeneralResult signin(HttpServletRequest request, HttpSession session) {
-        //System.out.println("点名功能");
-        GeneralResult result = new GeneralResult();
-        String hql = "from TblCourseEntity where courseSysname = :username";
-        Map<String, Object> parms = new HashMap<>();
-        SysUserEntity user = (SysUserEntity) session.getAttribute("user");
-        parms.put("username",user.getSysId());
-        List<Object> dbentity = baseDao.findEntityByHql(hql, parms);
-        return result.ok(dbentity);
+    public GeneralResult signin(HttpServletRequest request, HttpSession session,int courseListId,int stuId) {
+        System.out.println("点名功能");
+        System.out.println("测试"+courseListId+stuId);
+        GeneralResult <String>result = new GeneralResult();
+        StuSignEntity stuSignEntity = new StuSignEntity();
+        stuSignEntity.setSsStuid(stuId);
+        stuSignEntity.setSsCourseListId(courseListId);
+        //System.out.println(new Date());
+        stuSignEntity.setSsDate(new java.sql.Date(new Date().getTime()));
+        stuSignEntity.setSsStatus(1);
+       try{
+           baseDao.execEntitySave(stuSignEntity);
+           return result.ok(200,"签到成功");
+       }
+        catch (Exception e){
+           return result.error(500,"签到失败，请重试");
+        }
     }
 
 

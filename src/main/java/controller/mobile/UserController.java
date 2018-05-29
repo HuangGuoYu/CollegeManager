@@ -42,7 +42,7 @@ public class UserController extends BaseController {
         return "hello";
     }
 
-    @RequestMapping
+    @RequestMapping("/backSchool")
     @ResponseBody
     public GeneralResult backSchool(StuPosEntity stuPosEntity) {
         return userService.backSchool(stuPosEntity);
