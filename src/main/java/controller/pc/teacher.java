@@ -45,7 +45,7 @@ public class teacher extends BaseController {
     public GeneralResult signin(HttpServletRequest request, HttpSession session,int courseListId,int stuId) {
         System.out.println("点名功能");
         System.out.println("测试"+courseListId+stuId);
-        GeneralResult result = new GeneralResult();
+        GeneralResult <String>result = new GeneralResult();
         StuSignEntity stuSignEntity = new StuSignEntity();
         stuSignEntity.setSsStuid(stuId);
         stuSignEntity.setSsCourseListId(courseListId);
@@ -54,7 +54,7 @@ public class teacher extends BaseController {
         stuSignEntity.setSsStatus(1);
        try{
            baseDao.execEntitySave(stuSignEntity);
-           return result.ok(200,stuSignEntity);
+           return result.ok(200,"签到成功");
        }
         catch (Exception e){
            return result.error(500,"签到失败，请重试");
