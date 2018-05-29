@@ -90,14 +90,14 @@ public class FuDaoServiceImpl implements FuDaoService {
     @Override
     public GeneralResult deleteAnnouncement(Integer p_id) {
         GeneralResult result = new GeneralResult();
-        String hql = "delete from TblPostEntity where p_id = :p_id";
-        Map<String, Object> params = new HashMap<>();
-        params.put("p_id", p_id);
+        String hql = "delete from tbl_post where p_id = " + p_id;
         try {
-            baseDao.findEntityByHql(hql,params);
+            baseDao.execUpdate(hql, null);
             result.ok(200,"删除成功");
-        }catch (Exception e){
+        } catch (Exception e) {
             result.ok(-1,"删除失败");
+            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         return result;
     }

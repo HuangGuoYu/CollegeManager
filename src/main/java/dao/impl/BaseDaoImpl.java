@@ -1,10 +1,7 @@
 package dao.impl;
 
 import dao.BaseDao;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +18,23 @@ public class BaseDaoImpl implements BaseDao {
 
     @Autowired
     SessionFactory sessionFactory;
+
+
+    @Override
+    public boolean implementsql(String sql) {
+        try {
+            Transaction tx = null;
+            Session session = getSession();
+            tx = session.beginTransaction();
+            session.createQuery(sql);
+            tx.commit();
+            closeSession(session);
+            return true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     /**
      * 根据class查询实体

@@ -9,6 +9,16 @@ import java.util.Map;
  */
 public interface BaseDao {
 
+
+    /**
+     * 实现一条sql的操作，返回true or false
+     * @param sql
+     * @return
+     */
+    public boolean implementsql(String sql);
+
+
+
     <T> List<T> findAllEntityByClass(Class<T> entity);
 
     List<Map<String,Object>> findBySql(String sql, Map<String, Object> params);
