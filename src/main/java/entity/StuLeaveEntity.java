@@ -1,5 +1,7 @@
 package entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -12,7 +14,9 @@ public class StuLeaveEntity {
     private int slId;
     private Integer slStuid;
     private String slReason;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date slBegindate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date slEnddate;
     private Integer slStatus;
 
