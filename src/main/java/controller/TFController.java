@@ -31,7 +31,6 @@ public class TFController extends BaseController {
         }else{
             System.err.println("id为空");
             result = fuDaoService.getBackSchoolStuBySys();
-
         }
         return result;
     }

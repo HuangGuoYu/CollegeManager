@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="css/startCall.css" />
+<script src="js/qrcode.js"></script>
+<table class="layui-table">
+  <colgroup>
+    <col width="150">
+    <col width="200">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>课程id</th>
+      <th>课程名称</th>
+      <th>课程教师id</th>
+      <th>课程地点</th>
+      <th>课程时间</th>
+      <th>操作</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td id="course_id">101</td>
+      <td id="course_name">c++</td>
+      <td id="course_sysname">王慧蕊</td>
+      <td id="course_address">H105</td>
+      <td id="course_time">7-8</td>
+      <td id="class_operation"><button onclick="doFind()" class="layui-btn">查看详情</button><button id="startCall" class="layui-btn layui-btn-normal">开始点名</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="call-html">
+     <div class="call-tittle">
+         <ul>
+         	<li>
+         		<span class="close">X</span>
+         	</li>
+         </ul>
+     </div>
+     <div class="call-context">
+     	<div id="qrcode">
+     		
+			</div>
+     </div>
+</div>
+<div class="call-mask"></div>
+
+<script>
+    jQuery(document).ready(function($) {
+    	var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width : 700,//设置宽高
+            height : 500
+        });
+        qrcode.makeCode("http://www.baidu.com");
+		$('#startCall').click(function(){
+			$('.call-mask').fadeIn(100);
+			$('.call-html').slideDown(200);
+		})
+		$('.call-tittle .close').click(function(){
+			$('.call-mask').fadeOut(100);
+			$('.call-html').slideUp(200);
+		})
+	
+	})
+</script>
