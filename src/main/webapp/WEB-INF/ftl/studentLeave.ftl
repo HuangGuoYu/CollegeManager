@@ -108,7 +108,7 @@
             data:$('#leaveForm').serialize(),
             success:function(data){
                 if(data.code==200){
-                    alert（"添加成功");
+                    alert("添加成功");
                 }
             }
         })
