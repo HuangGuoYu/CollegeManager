@@ -43,5 +43,13 @@ public class ZhuZhuStuController extends BaseController {
         return new GeneralResult().ok(true);
     }
 
+    @RequestMapping("/queryClaaById")
+    public String queryClaaById( ){
+        String sql="select * from stu_location_course where stu_id ="+String.valueOf(1);
+        List<Map<String, Object>> bySql = baseDao.findBySql(sql, null);
+        request.setAttribute("user",bySql.get(0));
+        return "queryClassById";
+    }
+
 }
 
