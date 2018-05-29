@@ -1,5 +1,6 @@
 package service.mobile;
 
+import entity.StuPosEntity;
 import resp.GeneralResult;
 
 /**
@@ -20,4 +21,6 @@ public interface UserService {
      * @return 200 存在 ! 不存在
      */
     GeneralResult findIsExistsUserInfo(String sno);
+
+    GeneralResult backSchool(StuPosEntity stuPosEntity);
 }
