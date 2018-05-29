@@ -44,8 +44,8 @@ public class ZhuZhuStuController extends BaseController {
     }
 
     @RequestMapping("/queryClaaById")
-    public String queryClaaById( ){
-        String sql="select * from stu_location_course where stu_id ="+String.valueOf(1);
+    public String queryClaaById(int id ){
+        String sql="select * from stu_location_course where stu_id ="+String.valueOf(id);
         List<Map<String, Object>> bySql = baseDao.findBySql(sql, null);
         request.setAttribute("user",bySql.get(0));
         return "queryClassById";
