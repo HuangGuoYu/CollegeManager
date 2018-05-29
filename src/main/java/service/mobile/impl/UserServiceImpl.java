@@ -1,6 +1,7 @@
 package service.mobile.impl;
 
 import dao.BaseDao;
+import entity.StuPosEntity;
 import entity.StuUserEntity;
 import entity.TblClassEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +72,12 @@ public class UserServiceImpl implements UserService {
         }
         //直接重数据库查找
         return isExistsUserInfo;
+    }
+
+    @Override
+    public GeneralResult backSchool(StuPosEntity stuPosEntity) {
+
+        return null;
     }
 
     @Override

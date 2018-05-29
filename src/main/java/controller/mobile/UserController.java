@@ -1,6 +1,7 @@
 package controller.mobile;
 
 import common.BaseController;
+import entity.StuPosEntity;
 import entity.StuUserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,4 +42,9 @@ public class UserController extends BaseController {
         return "hello";
     }
 
+    @RequestMapping
+    @ResponseBody
+    public GeneralResult backSchool(StuPosEntity stuPosEntity) {
+        return userService.backSchool(stuPosEntity);
+    }
 }
