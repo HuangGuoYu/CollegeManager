@@ -26,14 +26,23 @@ public class FuDaoServiceImpl implements FuDaoService {
     @Override
     public GeneralResult getBackSchoolStuBySys_userId(Integer id) {
         GeneralResult result = new GeneralResult();
-        String hql = "from TblClassEntity where class_sysid = :id";
+        String hql = "SELECT * from \n" +
+                "(\n" +
+                "SELECT tbl_class.*,count(stu_id) as stucount \n" +
+                "FROM  tbl_class,stu_user \n" +
+                "where class_sysid = :id and class_id = stu_classid group by class_id\n" +
+                ") a LEFT JOIN\n" +
+                "(\n" +
+                "SELECT b.stu_classid,COUNT(0) num from stu_pos a \n" +
+                "LEFT JOIN stu_user b on a.sp_stuid = b.stu_id\n" +
+                "LEFT JOIN tbl_class c on b.stu_classid = c.class_id\n" +
+                "GROUP BY stu_classid \n" +
+                ") b on a.class_id = b.stu_classid";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
-        List<TblClassEntity> tbs = baseDao.findEntityByHql(hql,params);
-        for (TblClassEntity tb: tbs) {
-            System.out.println(tb.getClassName());
-        }
-        result.ok(200,tbs);
+        List<Map<String, Object>> bySql = baseDao.findBySql(hql, params);
+
+        result.ok(200,bySql);
         return result;
     }
 
