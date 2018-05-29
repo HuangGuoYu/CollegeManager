@@ -51,5 +51,11 @@ public class ZhuZhuStuController extends BaseController {
         return "queryClassById";
     }
 
+    @RequestMapping("/test")
+    public String test(){
+
+        return "studentLeave";
+    }
+
 }
 
