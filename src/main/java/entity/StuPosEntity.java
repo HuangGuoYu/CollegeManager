@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.Date;
 
 /**
  * Created by Administrator on 2018/5/28.
@@ -11,7 +12,7 @@ import java.sql.Time;
 public class StuPosEntity {
     private int spId;
     private Integer spStuid;
-    private Time spTime;
+    private Date spTime;
     private String spPeriod;
     private String spX;
     private String spY;
@@ -39,11 +40,11 @@ public class StuPosEntity {
 
     @Basic
     @Column(name = "sp_time", nullable = true)
-    public Time getSpTime() {
+    public Date getSpTime() {
         return spTime;
     }
 
-    public void setSpTime(Time spTime) {
+    public void setSpTime(Date spTime) {
         this.spTime = spTime;
     }
 
