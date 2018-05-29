@@ -17,15 +17,10 @@
         .course_table td{
             font-size:0.925em;
             height: 8em;
-            border-bottom: 1px dashed #eee;
-            border-right: 1px dashed #eee;
+            border-bottom: 2px solid #eee;
+            border-right: 2px solid #eee;
             text-align: center;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-        }
-        .course_table tr td:first-child {
-            background: #f3f8f8;
-            color: #698196;
-            border-bottom: none;
         }
 
         td{
