@@ -9,11 +9,10 @@
           success:function(data) {
               if (data.code == 200){
                   //console.log(data.data);
-                  var row = $("#leavebody").clone();
                   console.log(row);
                   var list = data.data;
                   for (var i = 0; i < list.length ; i++){
-                      console.log(list[i].stu_username);
+                      var row = $("#leavebody").clone();
                       row.find("#stu_username").text(list[i].stu_username);
                       row.find("#stu_name").text(list[i].stu_name);
                       row.find("#class_name").text(list[i].class_name);
@@ -22,7 +21,7 @@
                       row.find("#resion").text(list[i].sl_reason);
                       row.find("#stu_id").text(list[i].stu_id);
                       row.find("#sl_id").text(list[i].sl_id);
-                      var btn1=$('<button \tclass="layui-btn layui-btn-primary">批准</button><button class="layui-btn layui-btn-danger">拒绝</button>');
+                      var btn1=$('<button \tclass="layui-btn layui-btn-primary" onclick="submit(this)">批准</button><button class="layui-btn layui-btn-danger">拒绝</button>');
                       row.find("#class_operation").append(btn1);
                       row.appendTo("#leavetable");
                   }
@@ -33,6 +32,11 @@
       });
   });
 
+  function submit(obj) {
+      console.log("---->");
+      var td = $(obj).parent();
+      console.log(td);
+  }
 </script>
 <table class="layui-table" id="leavetable">
   <colgroup>
